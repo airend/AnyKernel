@@ -1,3 +1,4 @@
 *.zip
 zImage
 *.ko
+boot.img

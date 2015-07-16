@@ -1,10 +1,9 @@
-AnyKernel - CWM ZIP Template for kernel releases
+ZIPping script for kernels flashable in recovery
 ================================================
 
 // Instructions
 
-1- Place zImage on kernel/
-2- Place any files your kernel needs in system/
-   on their corresponding directories, if any.
-   For example: system/lib/modules/something.ko
-3- zip -r9 your.zip *
+1- Build kernel in out/target/product/<device>
+2- Run ./bootzip.sh <device> (either ovation, or
+   hummingbird) after customizing the paths on
+   line 3 (at the very least).
