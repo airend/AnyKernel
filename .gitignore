@@ -2,3 +2,4 @@
 zImage
 *.ko
 boot.img
+META-INF/com/google/android/updater-script
