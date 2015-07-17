@@ -1,9 +1,9 @@
-ZIPping script for kernels flashable in recovery
+ZIPping script for flashable recovery images
 ================================================
 
 // Instructions
 
-1- Build kernel in out/target/product/<device>
-2- Run ./bootzip.sh <device> (either ovation, or
+1- Build recovery in out/target/product/<device>
+2- Run ./recozip.sh <device> (either ovation, or
    hummingbird) after customizing the paths on
    line 3 (at the very least).

@@ -2,4 +2,5 @@
 zImage
 *.ko
 boot.img
+recovery.img
 META-INF/com/google/android/updater-script
