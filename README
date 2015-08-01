@@ -1,0 +1,8 @@
+ZIPping script for ElementalX-like kernels for N5
+=================================================
+
+// Instructions
+
+1- Build kernel in $REPO/kernel/lge/hammerhead
+2- Run ./bootzip.sh after customizing the paths
+   on line 3 (at the very least).

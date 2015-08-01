@@ -2,3 +2,4 @@
 zImage
 *.ko
 boot.img
+boot/elex.zImage
