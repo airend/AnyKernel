@@ -7,16 +7,6 @@ gunzip -c /tmp/ramdisk/boot.img-ramdisk.gz | cpio -i
 rm /tmp/ramdisk/boot.img-ramdisk.gz
 rm /tmp/boot.img-ramdisk.gz
 
-#Start elementalx script
-if [ $(grep -c "import /init.elementalx.rc" /tmp/ramdisk/init.rc) == 0 ]; then
-   sed -i "/import \/init\.trace\.rc/aimport /init.elementalx.rc" /tmp/ramdisk/init.rc
-fi
-
-#copy elementalx scripts
-cp /tmp/elementalx.sh /tmp/ramdisk/sbin/elementalx.sh
-chmod 755 /tmp/ramdisk/sbin/elementalx.sh
-cp /tmp/init.elementalx.rc /tmp/ramdisk/init.elementalx.rc
-
 #F2FS on /data
 if  ! grep -q '/data.*f2fs' /tmp/ramdisk/fstab.hammerhead; then
    sed -i 's@.*by-name/userdata.*@/dev/block/platform/msm_sdcc.1/by-name/userdata     /data           f2fs    rw,noatime,nosuid,nodev,discard,nodiratime,inline_xattr,inline_data,active_logs=4 wait,check,encryptable=/dev/block/platform/msm_sdcc.1/by-name/metadata\n&@' /tmp/ramdisk/fstab.hammerhead
