@@ -17,6 +17,16 @@ cp /tmp/elementalx.sh /tmp/ramdisk/sbin/elementalx.sh
 chmod 755 /tmp/ramdisk/sbin/elementalx.sh
 cp /tmp/init.elementalx.rc /tmp/ramdisk/init.elementalx.rc
 
+#F2FS on /data
+if  ! grep -q '/data.*f2fs' /tmp/ramdisk/fstab.hammerhead; then
+   sed -i 's@.*by-name/userdata.*@/dev/block/platform/msm_sdcc.1/by-name/userdata     /data           f2fs    rw,noatime,nosuid,nodev,discard,nodiratime,inline_xattr,inline_data,active_logs=4 wait,check,encryptable=/dev/block/platform/msm_sdcc.1/by-name/metadata\n&@' /tmp/ramdisk/fstab.hammerhead
+fi
+
+#F2FS on /cache
+if  ! grep -q '/cache.*f2fs' /tmp/ramdisk/fstab.hammerhead; then
+   sed -i 's@.*by-name/cache.*@/dev/block/platform/msm_sdcc.1/by-name/cache        /cache          f2fs    rw,noatime,nosuid,nodev,discard,nodiratime,inline_xattr,inline_data,active_logs=4 wait,check\n&@' /tmp/ramdisk/fstab.hammerhead
+fi
+
 if  ! grep -qr init.d /tmp/ramdisk/*; then
    echo "" >> /tmp/ramdisk/init.rc
    echo "service userinit /system/xbin/busybox run-parts /system/etc/init.d" >> /tmp/ramdisk/init.rc
