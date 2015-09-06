@@ -18,11 +18,3 @@ if [ ! -f /sdcard/.elementalx.backup ]; then
 else
    cp /sdcard/.elementalx.backup /system/etc/elementalx.conf;
 fi
-
-if [ "`grep THERM=1 /system/etc/elementalx.conf`" ]; then
-  cp /tmp/elexcool/thermal-engine-8974.conf /system/etc/thermal-engine-8974.conf
-elif [ "`grep THERM=2 /system/etc/elementalx.conf`" ]; then
-  cp /tmp/extracool/thermal-engine-8974.conf /system/etc/thermal-engine-8974.conf
-elif [ "`grep THERM=3 /system/etc/elementalx.conf`" ]; then
-  cp /tmp/stockcool/thermal-engine-8974.conf /system/etc/thermal-engine-8974.conf
-fi

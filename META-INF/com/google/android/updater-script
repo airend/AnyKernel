@@ -3,7 +3,6 @@ assert(getprop("ro.product.device") == "hammerhead" || getprop("ro.build.product
 ui_print("Installing Elefrant for N5...");
 
 package_extract_dir("config", "/tmp");
-package_extract_dir("thermal", "/tmp");
 set_perm(0, 0, 0777, "/tmp/busybox");
 
 ui_print(" ");
@@ -36,13 +35,10 @@ run_program("/tmp/systemcheck.sh");
 ui_print("Installing system files");
 package_extract_dir("system", "/system");
 set_perm_recursive(0, 0, 0644, 0644, "/system/lib/modules");
-set_perm_recursive(0, 0, 0644, 0644, "/system/etc/thermal-engine.conf");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/bin/mpdecision");
-set_perm_recursive(0, 2000, 0755, 0755, "/system/bin/thermal-engine-hh");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/bin/fstrim");
 set_perm_recursive(0, 0, 0666, 0666, "/system/etc/elementalx.conf");
 set_perm_recursive(0, 0, 0644, 0644, "/system/lib/hw/power.msm8974.so");
-set_perm_recursive(0, 0, 0644, 0644, "/system/etc/thermal-engine.conf");
 
 
 package_extract_dir("boot", "/tmp");

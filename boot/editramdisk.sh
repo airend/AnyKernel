@@ -19,12 +19,12 @@ cp /tmp/init.elementalx.rc /tmp/ramdisk/init.elementalx.rc
 
 #F2FS on /data
 if  ! grep -q '/data.*f2fs' /tmp/ramdisk/fstab.hammerhead; then
-   sed -i 's@.*by-name/userdata.*@/dev/block/platform/msm_sdcc.1/by-name/userdata     /data           f2fs    rw,noatime,nosuid,nodev,discard,nodiratime,inline_xattr,inline_data,active_logs=4 wait,check,encryptable=/dev/block/platform/msm_sdcc.1/by-name/metadata\n&@' /tmp/ramdisk/fstab.hammerhead
+   sed -i 's@.*by-name/userdata.*@/dev/block/platform/msm_sdcc.1/by-name/userdata     /data           f2fs    rw,noatime,nosuid,nodev,nodiratime,inline_xattr wait,check,encryptable=/dev/block/platform/msm_sdcc.1/by-name/metadata\n&@' /tmp/ramdisk/fstab.hammerhead
 fi
 
 #F2FS on /cache
 if  ! grep -q '/cache.*f2fs' /tmp/ramdisk/fstab.hammerhead; then
-   sed -i 's@.*by-name/cache.*@/dev/block/platform/msm_sdcc.1/by-name/cache        /cache          f2fs    rw,noatime,nosuid,nodev,discard,nodiratime,inline_xattr,inline_data,active_logs=4 wait,check\n&@' /tmp/ramdisk/fstab.hammerhead
+   sed -i 's@.*by-name/cache.*@/dev/block/platform/msm_sdcc.1/by-name/cache        /cache          f2fs    rw,noatime,nosuid,nodev,nodiratime,inline_xattr wait,check\n&@' /tmp/ramdisk/fstab.hammerhead
 fi
 
 if  ! grep -qr init.d /tmp/ramdisk/*; then
@@ -41,7 +41,10 @@ echo "xprivacy453 u:object_r:system_server_service:s0\n" >> /tmp/service_context
 #Tweak mpdecision
 sed -i '/service mpdecision/c\service mpdecision /system/bin/mpdecision --avg_comp --Nw=1:1.99 --Nw=2:2.99 --Nw=3:3.99 --Tw=2:140 --Tw=3:140 --Ts=2:190 --Ts=3:190' /tmp/ramdisk/init.hammerhead.rc
 
-
+#Disable thermal-engine
+if [ $(grep -c "service thermal-engine" /tmp/ramdisk/init.hammerhead.rc) == 1 ]; then
+   sed -i "/service thermal-engine/{N;N;N;N;d}" /tmp/ramdisk/init.hammerhead.rc
+fi
 
 find . | cpio -o -H newc | gzip > /tmp/boot.img-ramdisk.gz
 rm -r /tmp/ramdisk
