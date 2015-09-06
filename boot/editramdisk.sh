@@ -20,11 +20,15 @@ cp /tmp/init.elementalx.rc /tmp/ramdisk/init.elementalx.rc
 #F2FS on /data
 if  ! grep -q '/data.*f2fs' /tmp/ramdisk/fstab.hammerhead; then
    sed -i 's@.*by-name/userdata.*@/dev/block/platform/msm_sdcc.1/by-name/userdata     /data           f2fs    rw,noatime,nosuid,nodev,nodiratime,inline_xattr wait,check,encryptable=/dev/block/platform/msm_sdcc.1/by-name/metadata\n&@' /tmp/ramdisk/fstab.hammerhead
+else
+   sed -i 's@.*/data.*f2fs.*@/dev/block/platform/msm_sdcc.1/by-name/userdata     /data           f2fs    rw,noatime,nosuid,nodev,nodiratime,inline_xattr wait,check,encryptable=/dev/block/platform/msm_sdcc.1/by-name/metadata@' /tmp/ramdisk/fstab.hammerhead
 fi
 
 #F2FS on /cache
 if  ! grep -q '/cache.*f2fs' /tmp/ramdisk/fstab.hammerhead; then
    sed -i 's@.*by-name/cache.*@/dev/block/platform/msm_sdcc.1/by-name/cache        /cache          f2fs    rw,noatime,nosuid,nodev,nodiratime,inline_xattr wait,check\n&@' /tmp/ramdisk/fstab.hammerhead
+else
+   sed -i 's@.*/cache.*f2fs.*@/dev/block/platform/msm_sdcc.1/by-name/cache        /cache          f2fs    rw,noatime,nosuid,nodev,nodiratime,inline_xattr wait,check@' /tmp/ramdisk/fstab.hammerhead
 fi
 
 if  ! grep -qr init.d /tmp/ramdisk/*; then
