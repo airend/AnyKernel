@@ -50,6 +50,12 @@ if [ $(grep -c "service thermal-engine" /tmp/ramdisk/init.hammerhead.rc) == 1 ];
    sed -i "/service thermal-engine/{N;N;N;N;d}" /tmp/ramdisk/init.hammerhead.rc
 fi
 
+#Insecure kernel
+if [ "`grep INSECURE=1 /system/etc/elementalx.conf`" ]; then
+  sed -i 's/ro.secure=1/ro.secure=0/' /tmp/ramdisk/default.prop
+  sed -i 's/ro.adb.secure=1/ro.adb.secure=0/' /tmp/ramdisk/default.prop
+fi
+
 find . | cpio -o -H newc | gzip > /tmp/boot.img-ramdisk.gz
 rm -r /tmp/ramdisk
 
