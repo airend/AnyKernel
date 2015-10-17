@@ -32,7 +32,7 @@ else
 fi
 
 #Copy modified sepolicy for SuperSU 2.50
-cp /tmp/sepolicy /tmp/ramdisk/sepolicy
+#cp /tmp/sepolicy /tmp/ramdisk/sepolicy
 
 if  ! grep -qr init.d /tmp/ramdisk/*; then
    echo "" >> /tmp/ramdisk/init.rc
