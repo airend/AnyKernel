@@ -31,8 +31,10 @@ else
    sed -i 's@.*/cache.*f2fs.*@/dev/block/platform/msm_sdcc.1/by-name/cache        /cache          f2fs    rw,noatime,nosuid,nodev,nodiratime,inline_xattr wait,check@' /tmp/ramdisk/fstab.hammerhead
 fi
 
-#Copy modified sepolicy for SuperSU 2.50
-#cp /tmp/sepolicy /tmp/ramdisk/sepolicy
+#Copy modified sepolicy for SuperSU 2.50+ if necessary
+if diff /tmp/ramdisk/sepolicy /tmp/sepolicy.stock >/dev/null ; then
+  cp /tmp/sepolicy.root /tmp/ramdisk/sepolicy
+fi
 
 if  ! grep -qr init.d /tmp/ramdisk/*; then
    echo "" >> /tmp/ramdisk/init.rc
