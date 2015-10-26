@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ~/Android/KernelPackr; OUT=../REPO/out
+cd ~/Android/KernelPackr; OUT=$OUT_DIR_COMMON_BASE/AOSP
 
 if [ -n "$1" ]; then DEV=$1; else DEV=ovation; fi
 
