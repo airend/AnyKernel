@@ -36,15 +36,6 @@ if diff /tmp/ramdisk/sepolicy /tmp/sepolicy.stock >/dev/null ; then
   cp /tmp/sepolicy.root /tmp/ramdisk/sepolicy
 fi
 
-if  ! grep -qr init.d /tmp/ramdisk/*; then
-   echo "" >> /tmp/ramdisk/init.rc
-   echo "service userinit /system/xbin/busybox run-parts /system/etc/init.d" >> /tmp/ramdisk/init.rc
-   echo "    oneshot" >> /tmp/ramdisk/init.rc
-   echo "    class late_start" >> /tmp/ramdisk/init.rc
-   echo "    user root" >> /tmp/ramdisk/init.rc
-   echo "    group root" >> /tmp/ramdisk/init.rc
-fi
-
 echo "xprivacy453 u:object_r:system_server_service:s0\n" >> /tmp/service_contexts
 
 #Tweak mpdecision
