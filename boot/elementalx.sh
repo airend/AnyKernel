@@ -73,6 +73,15 @@ TIMEOUT=`grep "TIMEOUT" $ELEX_CONF | cut -d '=' -f2`
 echo $TIMEOUT > /sys/android_touch/wake_timeout
 echo S2W/DT2W Timeout\: $TIMEOUT >> $ELEX_LOGFILE;
 
+#Set Camera launch gesture
+if [ "`grep CAMERA_GESTURE=1 $ELEX_CONF`" ]; then
+  echo 1 > /sys/android_touch/camera_gesture
+  echo "Camera launch gesture enabled" >> $ELEX_LOGFILE;
+else
+  echo 0 > /sys/android_touch/camera_gesture
+  echo "Camera launch gesture disabled" >> $ELEX_LOGFILE;
+fi
+
 #Set FASTCHARGE
 if [ "`grep FC=1 $ELEX_CONF`" ]; then
   echo 1 > /sys/kernel/fast_charge/force_fast_charge

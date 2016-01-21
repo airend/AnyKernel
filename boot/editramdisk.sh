@@ -31,11 +31,6 @@ else
    sed -i 's@.*/cache.*f2fs.*@/dev/block/platform/msm_sdcc.1/by-name/cache        /cache          f2fs    rw,noatime,nosuid,nodev,nodiratime,inline_xattr wait,check@' /tmp/ramdisk/fstab.hammerhead
 fi
 
-#Copy modified sepolicy for SuperSU 2.50+ if necessary
-if diff /tmp/ramdisk/sepolicy /tmp/sepolicy.stock >/dev/null ; then
-  cp /tmp/sepolicy.root /tmp/ramdisk/sepolicy
-fi
-
 echo "xprivacy453 u:object_r:system_server_service:s0\n" >> /tmp/service_contexts
 
 #Tweak mpdecision
