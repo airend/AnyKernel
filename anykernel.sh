@@ -204,7 +204,7 @@ replace_string init.hammerhead.rc "#write /sys/module/msm_thermal/core_control/e
 replace_section init.hammerhead.rc "service rmt_storage" "group system" "service rmt_storage /system/bin/rmt_storage\n    class core\n    user root\n    group system wakelock";
 replace_section init.hammerhead.rc "service qmuxd" "group radio audio bluetooth gps" "service qmuxd /system/bin/qmuxd\n    class main\n    user radio\n    group radio audio bluetooth gps wakelock";
 replace_section init.hammerhead.rc "service sensors" "group root" "service sensors /system/bin/sensors.qcom\n    class main\n    user root\n    group root wakelock";
-#replace_section init.hammerhead.rc "service mpdecision" "disabled" "#service mpdecision /system/bin/mpdecision --no_sleep --avg_comp\n#   class main\n#   user root\n#   group root system\n#   disabled";
+replace_section init.hammerhead.rc "service mpdecision" "disabled" "service mpdecision /system/bin/mpdecision --avg_comp --Nw=1:1.99 --Nw=2:2.99 --Nw=3:3.99 --Tw=2:140 --Tw=3:140 --Ts=2:190 --Ts=3:190\n    class main\n    user root\n    group root system\n    disabled";
 replace_section init.hammerhead.rc "service thermal-engine" "group radio system" "#service thermal-engine /system/bin/thermal-engine-hh\n#   class main\n#   user root\n#   group radio system";
 
 # end ramdisk changes
