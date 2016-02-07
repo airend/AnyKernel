@@ -200,7 +200,7 @@ dump_boot;
 insert_line init.hammerhead.rc "init.fk" before "import init.hammerhead.usb.rc" "import init.fk.rc";
 insert_line init.hammerhead.rc "performance_profiles" before "import init.hammerhead.usb.rc" "import init.performance_profiles.rc";
 replace_string init.hammerhead.rc "#write /sys/module/msm_thermal/core_control/enabled" "write /sys/module/msm_thermal/core_control/enabled" "#write /sys/module/msm_thermal/core_control/enabled";
-#replace_string init.hammerhead.rc "#start mpdecision" "start mpdecision" "#start mpdecision";
+replace_string init.hammerhead.rc "#start mpdecision" "start mpdecision" "#start mpdecision";
 replace_section init.hammerhead.rc "service rmt_storage" "group system" "service rmt_storage /system/bin/rmt_storage\n    class core\n    user root\n    group system wakelock";
 replace_section init.hammerhead.rc "service qmuxd" "group radio audio bluetooth gps" "service qmuxd /system/bin/qmuxd\n    class main\n    user radio\n    group radio audio bluetooth gps wakelock";
 replace_section init.hammerhead.rc "service sensors" "group root" "service sensors /system/bin/sensors.qcom\n    class main\n    user root\n    group root wakelock";
