@@ -31,6 +31,10 @@ delete("/system/lib/modules/exfat.ko");
 set_perm(0, 0, 0777, "/tmp/systemcheck.sh");
 run_program("/tmp/systemcheck.sh");
 
+run_program("/tmp/busybox", "fstrim", "/cache");
+run_program("/tmp/busybox", "fstrim", "/data");
+run_program("/tmp/busybox", "fstrim", "/system");
+
 package_extract_dir("boot", "/tmp");
 set_perm(0, 0, 0777, "/tmp/cmdline.sh");
 set_perm(0, 0, 0777, "/tmp/editramdisk.sh");

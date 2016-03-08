@@ -17,6 +17,7 @@ echo PVS: $PVS >> $ELEX_LOGFILE;
 if [ "`grep HOTPLUG=1 $ELEX_CONF`" ]; then
   stop mpdecision
   echo 1 > /sys/devices/platform/msm_sleeper/enabled
+  echo 1000 > /sys/devices/system/cpu/cpufreq/elementalx/input_event_timeout
   echo Custom hotplugging >> $ELEX_LOGFILE;
 else
   echo 0 > /sys/devices/platform/msm_sleeper/enabled
@@ -196,6 +197,13 @@ echo Readahead size\: $READAHEAD >> $ELEX_LOGFILE;
 if [ "`grep GBOOST=0 $ELEX_CONF`" ]; then
   echo 0 > /sys/devices/system/cpu/cpufreq/elementalx/gboost;
   echo gboost disabled >> $ELEX_LOGFILE;
+fi
+
+#fstrim
+if hash fstrim 2>/dev/null; then
+  fstrim -v /cache | tee -a $ELEX_LOGFILE;
+  fstrim -v /data | tee -a $ELEX_LOGFILE;
+  fstrim -v /system | tee -a $ELEX_LOGFILE;
 fi
 
 #update saved config
