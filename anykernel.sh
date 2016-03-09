@@ -55,6 +55,9 @@ contains() {
 write_boot() {
   cd $split_img;
   cmdline=`cat *-cmdline`;
+  l2_opt="l2_opt=0"; vdd_uv="vdd_uv=3";
+  contains "$cmdline" "$l2_opt" || cmdline="$cmdline $l2_opt";
+  contains "$cmdline" "$vdd_uv" || cmdline="$cmdline $vdd_uv";
   board=`cat *-board`;
   base=`cat *-base`;
   pagesize=`cat *-pagesize`;
