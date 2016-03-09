@@ -1,6 +1,6 @@
 #!/bin/sh
 
-KFLAV=Franconaut-AK2
+KFLAV=Elefrant-AK2
 
 cd ~/Android/KernelPackr; OUT=../REPO/kernel/lge/hammerhead
 

@@ -3,7 +3,7 @@
 
 ## AnyKernel setup
 # EDIFY properties
-kernel.string=franco.Kernel by franciscofranco @ xda-developers
+kernel.string=ElementalX by flar2 @ xda-developers
 do.devicecheck=1
 do.initd=0
 do.modules=0
@@ -197,8 +197,9 @@ dump_boot;
 # begin ramdisk changes
 
 # init.hammerhead.rc
-insert_line init.hammerhead.rc "init.fk" before "import init.hammerhead.usb.rc" "import init.fk.rc";
-insert_line init.hammerhead.rc "performance_profiles" before "import init.hammerhead.usb.rc" "import init.performance_profiles.rc";
+remove_line init.hammerhead.rc "import init.fk.rc";
+insert_line init.hammerhead.rc "init.ex" before "import init.hammerhead.usb.rc" "import init.ex.rc";
+#insert_line init.hammerhead.rc "performance_profiles" before "import init.hammerhead.usb.rc" "import init.performance_profiles.rc";
 replace_string init.hammerhead.rc "#write /sys/module/msm_thermal/core_control/enabled" "write /sys/module/msm_thermal/core_control/enabled" "#write /sys/module/msm_thermal/core_control/enabled";
 #replace_string init.hammerhead.rc "#start mpdecision" "start mpdecision" "#start mpdecision";
 replace_section init.hammerhead.rc "service rmt_storage" "group system" "service rmt_storage /system/bin/rmt_storage\n    class core\n    user root\n    group system wakelock";
