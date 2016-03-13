@@ -207,6 +207,7 @@ dump_boot;
 # init.hammerhead.rc
 remove_line init.hammerhead.rc "import init.fk.rc";
 insert_line init.hammerhead.rc "init.ex" before "import init.hammerhead.usb.rc" "import init.ex.rc";
+remove_line init.hammerhead.rc "import init.performance_profiles.rc";
 #insert_line init.hammerhead.rc "performance_profiles" before "import init.hammerhead.usb.rc" "import init.performance_profiles.rc";
 replace_string init.hammerhead.rc "#write /sys/module/msm_thermal/core_control/enabled" "write /sys/module/msm_thermal/core_control/enabled" "#write /sys/module/msm_thermal/core_control/enabled";
 #replace_string init.hammerhead.rc "#start mpdecision" "start mpdecision" "#start mpdecision";
