@@ -197,6 +197,7 @@ dump_boot;
 # begin ramdisk changes
 
 # init.hammerhead.rc
+remove_line init.hammerhead.rc "import init.ex.rc";
 insert_line init.hammerhead.rc "init.fk" before "import init.hammerhead.usb.rc" "import init.fk.rc";
 insert_line init.hammerhead.rc "performance_profiles" before "import init.hammerhead.usb.rc" "import init.performance_profiles.rc";
 replace_string init.hammerhead.rc "#write /sys/module/msm_thermal/core_control/enabled" "write /sys/module/msm_thermal/core_control/enabled" "#write /sys/module/msm_thermal/core_control/enabled";
