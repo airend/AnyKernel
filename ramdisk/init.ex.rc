@@ -41,5 +41,6 @@ on property:sys.boot_completed=1
     # misc
     write /sys/class/timed_output/vibrator/amp 60
     #write /sys/module/lm3630_bl/parameters/backlight_dimmer 1
+    write /sys/module/wakeup/parameters/enable_si_ws 0
 
     start elementalx
